@@ -1,0 +1,36 @@
+$ gnuplot
+
+    G N U P L O T
+    Version 4.2 patchlevel 6 
+     ....
+    Send bug reports and suggestions to <http://sourceforge.net/projects/gnuplot>
+
+Terminal type set to 'wxt'
+gnuplot> 
+gnuplot>               #####  typed ^Z here
+[1]+  Stopped                 gnuplot
+$ ps
+  PID TTY          TIME CMD
+ 1681 pts/1    00:00:00 tcsh
+ 1690 pts/1    00:00:00 bash
+ 1708 pts/1    00:00:00 gnuplot
+ 1709 pts/1    00:00:00 ps
+
+
+$ kill 1708            ###### didn't kill the command as ps shows
+
+$ ps
+  PID TTY          TIME CMD
+ 1681 pts/1    00:00:00 tcsh
+ 1690 pts/1    00:00:00 bash
+ 1708 pts/1    00:00:00 gnuplot
+ 1710 pts/1    00:00:00 ps
+$ kill -9 1708           ### -9 did the trick
+$ 
+[1]+  Killed                  gnuplot
+
+$ ps
+  PID TTY          TIME CMD
+ 1681 pts/1    00:00:00 tcsh
+ 1690 pts/1    00:00:00 bash
+ 1711 pts/1    00:00:00 ps
